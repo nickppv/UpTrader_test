@@ -1,0 +1,18 @@
+{% load static %}
+{% load menu_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Брэнды страны: {{ country }}</title>
+</head>
+<body>
+    <h1>Страна и производитель</h1>
+     <a href="{% url 'just_menu:index' %}"><p>Вернуться на главную страницу</p></a>
+
+    {% draw_menu country %}
+
+</body>
+</html>

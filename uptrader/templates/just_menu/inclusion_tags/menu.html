@@ -1,0 +1,53 @@
+{% if country and brand %}
+
+    {% for countries in open_country %}
+        <ul>
+            <a href="{% url 'just_menu:brand' countries %}"><li>{{ countries }}</li></a>
+            <ul>
+                {% for brand in countries.brand.all %}
+                    <a href="{% url 'just_menu:models' countries brand %}"><li>{{ brand }}</li></a>
+                    {% for model in brand.model.all %}
+                        <ul>
+                            <li>{{ model }}</li>
+                        </ul>
+                    {% endfor %}
+
+                {% endfor %}
+            </ul>
+        </ul>
+    {% endfor %}
+
+    {% for countries in close_country %}
+        <ul>
+            <a href="{% url 'just_menu:brand' countries %}"><li>{{ countries }}</li></a>
+        </ul>
+    {% endfor %}
+
+{% elif country %}
+
+    {% for countries in open_country %}
+        <ul>
+            <a href="{% url 'just_menu:brand' countries %}"><li>{{ countries }}</li></a>
+            <ul>
+                {% for brand in countries.brand.all %}
+                    <a href="{% url 'just_menu:models' countries brand %}"><li>{{ brand }}</li></a>
+                {% endfor %}
+            </ul>
+        </ul>
+    {% endfor %}
+
+    {% for countries in close_country %}
+        <ul>
+            <a href="{% url 'just_menu:brand' countries %}"><li>{{ countries }}</li></a>
+        </ul>
+    {% endfor %}
+
+{% else %}
+
+    {% for countries in all_objects %}
+        <ul>
+            <a href="{% url 'just_menu:brand' countries %}"><li>{{ countries }}</li></a>
+        </ul>
+    {% endfor %}
+
+{% endif %}
