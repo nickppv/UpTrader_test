@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django import template
 from ..models import Country
 
@@ -13,7 +14,7 @@ def draw_menu(country=None, brand=None):
         'brand': brand,
     }
     if country:
-        cnt = Country.objects.get(country=country).pk
+        cnt = get_object_or_404(Country, country=country).pk
         open_country = Country.objects.filter(pk__lte=cnt)
         close_country = Country.objects.filter(pk__gt=cnt)
         context['open_country'] = open_country
